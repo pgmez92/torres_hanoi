@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--favicon-->
+    <link rel="shortcut icon" href="/images/codo.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      type="image/x-icon"
+      href="/images/codo.png"
+    />
+    <title>Hanoi</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <!--CSS-->
+    <link rel="stylesheet" href="css/base.css" />
+  </head>
+
+  <body id="pagina_clave">
+    <header class="header align-middle justify-content-center d-flex">
+      <h1 class="align-middle justify-content-center">Welcome to Hanoi</h1>
+    </header>
+
+    <main>
+      <!--Navbar-->
+      <div class="container justify-content-center">
+        <!--Row con el logo, la nube y la dificultad-->
+        <div class="row align-middle justify-content-center text-center">
+          <div class="col-4">
+            <a
+              href="http://fullstack2021.online/fullstack/codos/"
+              class="logo mr-auto"
+              ><img src="/images/logocodo.png" alt="" class="img-fluid"
+            /></a>
+          </div>
+          <div class="col-4 nube"></div>
+          <div class="col-4">
+            <a class="btn btn-warning btn_diff">¿Demasiado fácil?</a>
+          </div>
+        </div>
+
+        <!--Row con las torres-->
+        <div
+          class="row d-flex align-middle justify-content-center text-center hanoi"
+        >
+          <div class="col-4 torre1 align-items-end"></div>
+          <div class="col-4 torre2 align-items-end"></div>
+          <div class="col-4 torre3 align-items-end"></div>
+        </div>
+
+        <!--Row con datos del jugador-->
+        <div class="row align-middle justify-content-center text-center">
+          <div class="col-6">Movimientos: <span class="puntuacion"></span></div>
+        </div>
+
+        <!--Row con las instrucciones, desplegable-->
+        <div class="row align-middle justify-content-center text-center mb-5">
+          <div class="col-12">
+            <a
+              class="btn btn-secondary btn_instrucciones mb-3"
+              data-toggle="collapse"
+              href="#instrucciones"
+              role="button"
+              aria-expanded="collapse"
+              aria-controls="instrucciones"
+            >
+              Instrucciones aquí
+            </a>
+
+            <div class="collapse card card-body mb-4" id="instrucciones">
+              <ul>
+                El objetivo del rompecabezas es mover toda la pila a otra barra,
+                obedeciendo las siguientes reglas simples:
+                <li>
+                  Solo se puede mover un disco a la vez. Para hacerlo, pulsa la
+                  torre del disco que deseas mover.
+                </li>
+                <li>
+                  Cada movimiento consiste en tomar el disco superior de una de
+                  las pilas y colocarlo encima de otra pila o sobre una barra
+                  vacía.
+                </li>
+                <li>
+                  No se puede colocar un disco más grande sobre un disco más
+                  pequeño.
+                </li>
+                ¡Diviértete!
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Ventana emergente version marta-->
+    <div class="modal_diff">
+      <div class="cerrar">
+        <a class="btn_diff"
+          ><img class="btn_diff" src="images/cerrar.png" width="30" height="30"
+        /></a>
+      </div>
+      <form class="form-check form-check-inline">
+        Elige tu dificultad:
+        <input
+          class="form-check-input"
+          type="radio"
+          name="dificultad"
+          value="4"
+          checked
+        />
+        <label class="form-check-label"> Fácil </label>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="dificultad"
+          value="5"
+        />
+        <label class="form-check-label"> Normal </label>
+        <input
+          class="form-check-input"
+          type="radio"
+          name="dificultad"
+          value="6"
+        />
+        <label class="form-check-label"> Difícil </label>
+      </form>
+      <button
+        type="button"
+        class="btn btn-primary"
+        onclick="cambiarDificultad()"
+      >
+        Cambiar
+      </button>
+    </div>
+
+    <!-- Ventana emergente new player-->
+    <div class="modal_new" style="background-color: brown">
+      <div class="cerrar">
+        <a class="btn_new"
+          ><img class="btn_new" src="images/cerrar.png" width="30" height="30"
+        /></a>
+      </div>
+      <form class="form-text-input">
+        Introduzca el nombre del nuevo jugador
+        <input
+          class="text"
+          type="text"
+          placeholder="Nombre"
+          id="nuevo_nombre"
+        />
+      </form>
+      <button type="button" class="btn btn-primary" onclick="cambiarJugador()">
+        Vamos allá!
+      </button>
+    </div>
+
+    <!--Audios-->
+    <audio name="mal" src="audios/bruh.m4a"></audio>
+    <audio name="bien" src="audios/smash_incredible.m4a"></audio>
+
+    <!--Script-->
+    <!--Bootstrap-->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--propio-->
+    <script src="js/motor_clave.js"></script>
+  </body>
+</html>
