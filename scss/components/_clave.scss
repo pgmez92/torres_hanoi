@@ -1,11 +1,11 @@
 @font-face {
     font-family: "kashima";
-    src: url("/fonts/kashima.otf");
+    src: url("fonts/kashima.otf");
 }
 
 @font-face {
     font-family: "manga";
-    src: url("/fonts/manga.otf");
+    src: url("fonts/manga.otf");
 }
 
 @font-face {
@@ -15,7 +15,7 @@
 
 
 body#pagina_clave {
-    background-image: url("/images/city.jpg");
+    background-image: url("images/city.jpg");
     background-size: cover;
     background-color: transparent;
 
@@ -92,7 +92,7 @@ body#pagina_clave {
                 width: 100px;
                 text-align: center;
 
-                background-image: url("/images/palo.png");
+                background-image: url("images/palo.png");
                 background-position: center;
                 background-size: cover;
                 background-repeat: no-repeat;
